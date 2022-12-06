@@ -32,16 +32,16 @@ int main(int argc, char *argv[]) {
         myMap = MapClass("AB_US_2020.csv");
     } else {  //  Use Graph
         //  TODO by Alexander
-        vector<AirBnB> listings = dataLoader();
+        vector<AirBnB> listingsVec = dataLoader();
 
         list<AirBnB> hold;
         list<AirBnB>* tab;
 
         HashTable cityTable(100000);
 
-        for (int i = 0; i < listings.size(); i++)
+        for (int i = 0; i < listingsVec.size(); i++)
         {
-            cityTable.insertItem(listings.at(i), listings.at(i).city);
+            cityTable.insertItem(listingsVec.at(i), listingsVec.at(i).city);
         }
 
         string city = getCity();
