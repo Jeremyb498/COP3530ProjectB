@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include "mapClass.h"
+#include "HashTable.h"
 
 int main(int argc, char *argv[]) {
     bool useMap = true;
