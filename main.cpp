@@ -32,6 +32,88 @@ int main(int argc, char *argv[]) {
         myMap = MapClass("AB_US_2020.csv");
     } else {  //  Use Graph
         //  TODO by Alexander
+        vector<AirBnB> listings = dataLoader();
+
+        list<AirBnB> hold;
+        list<AirBnB>* tab;
+
+        HashTable cityTable(100000);
+
+        for (int i = 0; i < listings.size(); i++)
+        {
+            cityTable.insertItem(listings.at(i), listings.at(i).city);
+        }
+
+        string city = getCity();
+
+        HashTable roomTable(100000);
+        hold = cityTable.findItem(city);
+        for (auto i : hold)
+        {
+            if (i.city == city)
+            {
+                roomTable.insertItem(i, i.roomType);
+            }
+        }
+
+        if (roomTable.returnSize() == 0)
+        {
+            cout << "Could not find\n";
+        }
+
+        string type = getRoomType();
+
+        HashTable priceTable(roomTable.returnSize());
+        hold = roomTable.findItem(type);
+
+        for (auto i : hold)
+        {
+            if (i.roomType == type)
+            {
+                priceTable.insertItem(i, i.price);
+            }
+        }
+
+        string cost = getPrice();
+
+        HashTable nameTable(priceTable.returnSize());
+        hold = priceTable.findItem(cost);
+
+        for (auto i : hold)
+        {
+            if (i.price == cost)
+            {
+                nameTable.insertItem(i, i.name);
+            }
+        }
+
+        vector<AirBnB> listingsVector;
+        set<string> hasBeen;
+
+        tab = nameTable.returnTable();
+        for (int i = 0; i < priceTable.returnSize(); i++)
+        {
+            for (auto x : tab[i])
+            {
+                if (!hasBeen.count(x.name))
+                {
+                    listingsVector.push_back(x);
+                    hasBeen.insert(x.name);
+                }
+            }
+        }
+
+        int listNumber = listingsVector.size();
+
+        if (listNumber > 10)
+        {
+            listNumber = 10;
+        }
+    
+        for (int i = 0; i < listNumber; i++)
+        {
+            cout << listingsVector.at(i).name << endl;
+        }
     }
 
     if (debugMode) {
