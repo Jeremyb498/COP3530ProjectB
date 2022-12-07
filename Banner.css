@@ -1,0 +1,41 @@
+.banner {
+    background: url(https://floridapolitics.com/wp-content/uploads/2021/08/119173039_10157685574864632_5825766981210040278_n.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 70vh;
+    position:relative;
+ 
+   }
+
+.banner__info{
+    background-color: midnightblue;
+    color:white;
+    padding-top:25vh ;
+    padding-left:50px; 
+    padding-right:50px;
+    padding-bottom:40px ;
+    width:300px;
+}
+.banner__info > button {
+    margin-top: 15px;
+    font-size: 20px;
+    background-color: orangered;
+    color: white;
+    border-radius: 35px;
+    border-color: midnightblue;
+}
+.banner__info > button:hover {
+    background-color: white;
+    color:orangered; 
+}
+.banner__search{
+    display: flex;
+    flex-direction: column;
+}
+.banner__searchButton{
+    background-color: white !important;
+    font-weight:600 !important;
+    text-transform: inherit !important;
+    color: orangered
+}

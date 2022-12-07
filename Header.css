@@ -1,0 +1,39 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:sticky;
+    top:0;
+    background-color: orangered;
+    z-index: 100;
+    width: 100%;
+    top:0;
+}
+
+.header__icon{
+    object-fit: contain;
+    height: 100px;
+    margin-left: 50px;
+}
+
+.header__center{
+    font-weight: 900px;
+    display: flex;
+    flex:1;
+    align-items: center;
+    max-width: fit-content;
+    padding: 10px;
+    height: 30px;
+    border:0px solid lightblue;
+    border-radius: 999px;
+}
+
+
+.header__right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:15vw;
+    margin-right: 50px;
+
+}
