@@ -143,6 +143,7 @@ vector<AirBnB> dataLoader()
     return listingObj;    
 }
 
+// Prompt user for room type
 string getRoomType()
 {
     int choice;
@@ -167,6 +168,7 @@ string getRoomType()
     }
 }
 
+// Prompt user for price
 string getPrice()
 {
     string price;
@@ -176,6 +178,7 @@ string getPrice()
     return price;
 }
 
+// Prompt user for city
 string getCity()
 {
     string city;
@@ -194,6 +197,7 @@ class HashTable
     list<AirBnB> *tab;
     
 public:
+    // Hash table constructor
     HashTable(int sizeTable)
     {
         bucket = sizeTable;
@@ -203,7 +207,8 @@ public:
         }
         tab = new list<AirBnB>[bucket];
     }
-
+    
+    // Insert listing into hash table
     void insertItem(AirBnB listing, int hashKey)
     {
         if (hashKey == -1)
@@ -216,31 +221,15 @@ public:
         sizeTable++;
     }
 
-    void insertItem(AirBnB listing, string hashKey)
-    {
-        if (hashKey == "-1")
-        {
-            hashKey = "0";
-        }
-
-        int count = hashFunction(hashKey);
-        tab[count].push_back(listing);
-        sizeTable++;
-    }
-
+    // Search for something in hash table with an int
     list<AirBnB> searchItem(int hashKey)
     {
         int count = hashFunction(hashKey);
         return tab[count];
     }
 
+    // Search for something in hash table with a string
     list<AirBnB> findItem(string hashKey)
-    {
-        int count = hashFunction(hashKey);
-        return tab[count];
-    }
-
-    list<AirBnB> searchItem(float hashKey)
     {
         int count = hashFunction(hashKey);
         return tab[count];
@@ -269,14 +258,6 @@ public:
             count += (num % 10) * hf;
             num /= 10;
         }
-        return count % bucket;
-    }
-
-    int hashFunction(float num)
-    {
-        int count = 0;
-        count = num * hf;
-
         return count % bucket;
     }
 
@@ -314,6 +295,8 @@ public:
 
         HashTable roomTable(100000);
         hold = cityTable.findItem(city);
+        
+        // Add all listings with user's city
         for (auto i : hold)
         {
             if (i.city == city)
@@ -332,6 +315,7 @@ public:
         HashTable priceTable(roomTable.returnSize());
         hold = roomTable.findItem(type);
 
+        // Add all listings with user's room type
         for (auto i : hold)
         {
             if (i.roomType == type)
@@ -345,6 +329,7 @@ public:
         HashTable nameTable(priceTable.returnSize());
         hold = priceTable.findItem(cost);
 
+        // Add all listings with user's price
         for (auto i : hold)
         {
             if (i.price == cost)
